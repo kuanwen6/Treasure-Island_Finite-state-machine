@@ -1,0 +1,92 @@
+.modal{
+    font-family: Microsoft JhengHei;
+}
+.map{
+    position: absolute;
+    margin-top: 40px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 10em;
+    width: 1100px;
+    height: 580px;
+    background-color: rgba(3, 215, 244, 0.99);
+}
+
+
+.navbar {min-height: 60px;}
+.navbar-brand {padding: 0 15px; height: 60px; line-height: 60px;}
+
+#pirate {
+    position: absolute;
+    top:28vh;
+    right: -23vw;
+    z-index: -10;
+    width: 45vh;
+    height: 54vh;
+}
+#box {
+    margin-left:5vw;
+}
+
+.map #island1{
+    /*position: relative;*/
+    position: absolute;
+    left: 60px;
+    top:200px;
+}
+.map #island2{
+    /*position: relative;*/
+    position: absolute;
+    left: 430px;
+    top:350px;
+}
+
+.map #island3{
+    /*position: relative;*/
+    position: absolute;
+    left: 315px;
+    top:30px;
+}
+
+.map #island4{
+    /*position: relative;*/
+    position: absolute;
+    left: 835px;
+    top:280px;
+}
+
+.map #island5{
+    /*position: relative;*/
+    position: absolute;
+    left: 730px;
+    top:15px;
+}
+
+.map .text {
+    position:absolute;
+    visibility:hidden;
+}
+
+.map #arrow1-2a{
+    position: absolute;
+    left: 250px;
+    top:400px;
+    height:130px;
+    width:150px;
+    visibility:hidden;
+
+    -ms-transform: rotate(58deg); /* IE 9 */
+    -webkit-transform: rotate(58deg); /* Chrome, Safari, Opera */
+    transform: rotate(58deg);
+}
+
+.map #boat{
+     position: absolute;
+    left: 180px;
+    top:310px;
+    height: 100px;
+    width: 100px;
+    z-index: 10;
+}

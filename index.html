@@ -1,0 +1,78 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/d3.v3.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
+        <script src='https://cdn.rawgit.com/weepy/jquery.path/master/jquery.path.js'></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" style="font-family:Microsoft JhengHei;font-size:30px;">金銀島-有限狀態機</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right" style="margin-right:1.5vw;margin-top:5px;">
+              <li><button type="button" class="btn btn-link navbar-btn" onclick="restart()">重新開始</button></li>
+              <li><button type="button" id="description" class="btn btn-link navbar-btn" data-toggle="modal" data-target="#myModal">
+      遊戲說明
+    </button></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">相關連結
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a target="_blank" href="https://zh.wikipedia.org/wiki/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA">維基百科</a></li>
+                  <li><a target="_blank" href="http://nthucad.cs.nthu.edu.tw/~yyliu/personal/nou/04ds/fsm.html">FSM範例</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+
+        <div class="map" id="map">
+            <img src="img/island1.png" id="island1" style="width:225px;height:185px;" onmouseover="hover(1)" onmouseout="unhover(1)">
+            <img src="img/yellow-up.png" id="arrow1-2a">
+            <img src="img/island2.png" id="island2" style="width:225px;height:185px;" onmouseover="hover(2)" onmouseout="unhover(2)">
+            <img src="img/island3.png" id="island3" style="width:225px;height:185px;" onmouseover="hover(3)" onmouseout="unhover(3)">
+            <img src="img/island4.png" id="island4" style="width:225px;height:185px;" onmouseover="hover(4)" onmouseout="unhover(4)">
+            <img src="img/island5.png" id="island5" style="width:225px;height:185px;" onmouseover="hover(5)" onmouseout="unhover(5)">
+
+
+            <img src="img/ship.png" id="boat">
+
+            <p class="text" style="font-size:30px;font-family:Microsoft JhengHei;letter-spacing:8px;font-weight:bold;"></p>
+        </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h2 class="modal-title" id="myModalLabel">金銀島 - 遊戲說明</h2>
+          </div>
+          <div class="modal-body">
+            <p>身為海盜的你，最重要的目標就是找到金銀島的寶藏！</p>
+            <img id="pirate" src=img/1.png >
+            <p>你需要找到通往金銀島的最佳路線，但是你並沒有屬於自己的船隻</p>
+            <p>你必須在每個路過的島嶼(皆有<span style="color:red;">兩艘駛離的船隻</span>，A和B)，選擇其中一艘船，搭乘到下一個島嶼</p>
+            <img id="box" src="img/3.png">
+            <p>就由這種轉乘的方式，前往目的地 --- 金銀島!!!</p>
+            <p>前往尋寶的路程中，我們希望是以<span style="color:red;">最快的方式(最短路徑)</span>到達，以免金銀島的寶藏被他人搶先了!</p>
+            <p>記住!千萬不要在路途中迷失方向了！</p>
+          </div>
+          <div class="modal-footer"><button type="button" class="btn btn-warning btn" data-dismiss="modal">開始旅程!</button></div>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
