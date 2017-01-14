@@ -18,7 +18,7 @@
               <a class="navbar-brand" style="font-family:Microsoft JhengHei;font-size:30px;">金銀島-有限狀態機</a>
             </div>
             <ul class="nav navbar-nav navbar-right" style="margin-right:1.5vw;margin-top:5px;">
-              <li><button type="button" class="btn btn-link navbar-btn" onclick="restart()">重新開始</button></li>
+              <li><button type="button" class="btn btn-link navbar-btn" onclick="restart()" id="restart">重新開始</button></li>
               <li><button type="button" id="description" class="btn btn-link navbar-btn" data-toggle="modal" data-target="#myModal">
       遊戲說明
     </button></li>
@@ -28,6 +28,7 @@
                 <ul class="dropdown-menu">
                   <li><a target="_blank" href="https://zh.wikipedia.org/wiki/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA">維基百科</a></li>
                   <li><a target="_blank" href="http://nthucad.cs.nthu.edu.tw/~yyliu/personal/nou/04ds/fsm.html">FSM範例</a></li>
+                  <li><a onclick="advance()">進階挑戰</a></li>
                 </ul>
               </li>
             </ul>
@@ -37,16 +38,47 @@
 
         <div class="map" id="map">
             <img src="img/island1.png" id="island1" style="width:225px;height:185px;" onmouseover="hover(1)" onmouseout="unhover(1)">
-            <img src="img/yellow-up.png" id="arrow1-2a">
             <img src="img/island2.png" id="island2" style="width:225px;height:185px;" onmouseover="hover(2)" onmouseout="unhover(2)">
             <img src="img/island3.png" id="island3" style="width:225px;height:185px;" onmouseover="hover(3)" onmouseout="unhover(3)">
             <img src="img/island4.png" id="island4" style="width:225px;height:185px;" onmouseover="hover(4)" onmouseout="unhover(4)">
             <img src="img/island5.png" id="island5" style="width:225px;height:185px;" onmouseover="hover(5)" onmouseout="unhover(5)">
 
-
             <img src="img/ship.png" id="boat">
 
+            <img src="img/pirate.png" id="pirate_head" style="position:absolute;width:120px;height:120px;left:-200px;top:100px">
+            <img src="img/curve.png" id="curve" style="position:absolute;width:50px;height:30px;left:-90px;top:210px;transform: rotate(40deg);opacity:0.8;">
+            <img src="img/red-arrow.png" id="red-a" style="position:absolute;width:50px;height:60px;left:60px;top:200px;">
+            <img src="img/yellow-arrow.png" id="yellow-a" style="position:absolute;width:50px;height:60px;left:240px;top:203px;">
+            <p class="intro_text" style="top:155px;left:75px;font-size:30px;color:red;opacity:0.8;">A</p>
+            <p class="intro_text" style="top:158px;left:255px;font-size:30px;color:yellow;opacity:0.9;">B</p>
+            <p class="intro_text" style="top:230px;left:-220px;">呀!小夥子!</p>
+            <p class="intro_text" style="top:255px;left:-220px;">島上不同的旗幟</p>
+            <p class="intro_text" style="top:280px;left:-220px;">代表著不同的航線</p>
+            <p class="intro_text" style="top:305px;left:-220px;">左是A(紅) 右是B(黃)</p>
+            <p class="intro_text" style="top:330px;left:-220px;">快帶我們去金銀島吧!</p>
+            <p class="intro_text_s" id="t1" style="top:230px;left:-220px;">哈哈!就是這樣</p>
+            <p class="intro_text_s" id="t2" style="top:255px;left:-220px;">加油吧!別迷路了!</p>
+            <img src="img/tortoise.png" style="position:absolute;top:490px;left:130px;height:60px;width:60px;-ms-transform: rotate(58deg);-webkit-transform: rotate(58deg);transform: rotate(58deg);">
+            <img src="img/island.png" style="position:absolute;top:260px;left:660px;height:80px;width:80px;">
+            <img src="img/whale.png" style="position:absolute;top:480px;left:880px;height:100px;width:100px;">
+            <img src="img/treasure-1.png" style="position:absolute;top:120px;left:850px;height:55px;width:55px;">
+            <img src="img/boat.png" style="position:absolute;top:-30px;left:50px;height:180px;width:180px;-ms-transform: rotate(10deg);-webkit-transform: rotate(10deg);transform: rotate(10deg);">
+            <img src="img/r-arrow.png" id="arr1-2" class="arr" style="top:360px;left:300px;height:130px;width:130px;-ms-transform: rotate(125deg);-webkit-transform: rotate(125deg);transform: rotate(125deg);">
+            <img src="img/y-arrow.png" id="arr2-1" class="arr" style="top:390px;left:260px;height:150px;width:130px;-ms-transform: rotate(305deg);-webkit-transform: rotate(305deg);transform: rotate(305deg);">
+            <img src="img/y-arrow.png" id="arr1-3" class="arr" style="top:210px;left:280px;height:130px;width:130px;-ms-transform: rotate(43deg);-webkit-transform: rotate(43deg);transform: rotate(43deg);">
+            <img src="img/y-arrow.png" id="arr3-2" class="arr" style="top:230px;left:380px;height:160px;width:130px;-ms-transform: rotate(160deg);-webkit-transform: rotate(160deg);transform: rotate(160deg);">
+            <img src="img/r-arrow.png" id="arr2-3" class="arr" style="top:220px;left:450px;height:160px;width:130px;-ms-transform: rotate(340deg);-webkit-transform: rotate(340deg);transform: rotate(340deg);">
+            <img src="img/r-arrow.png" id="arr5-3" class="arr" style="top:85px;left:570px;height:170px;width:130px;-ms-transform: rotate(265deg);-webkit-transform: rotate(265deg);transform: rotate(265deg);">
+            <img src="img/r-arrow.png" id="arr4-5" class="arr" style="top:200px;left:850px;height:90px;width:130px;-ms-transform: rotate(335deg);-webkit-transform: rotate(335deg);transform: rotate(335deg);">
+            <img src="img/y-arrow.png" id="arr5-2" class="arr" style="top:180px;left:695px;height:330px;width:130px;-ms-transform: rotate(215deg);-webkit-transform: rotate(215deg);transform: rotate(215deg);">
+            <img src="img/r-arrow.png" id="arr3-4" class="arr" style="top:160px;left:620px;height:330px;width:130px;-ms-transform: rotate(125deg);-webkit-transform: rotate(125deg);transform: rotate(125deg);">
+            <img src="img/y-arrow2.png" id="arr4-1" class="arr" style="top:450px;left:220px;">
+
             <p class="text" style="font-size:30px;font-family:Microsoft JhengHei;letter-spacing:8px;font-weight:bold;"></p>
+            <p class="flag_text" style="font-size:30px;font-family:Microsoft JhengHei;letter-spacing:8px;font-weight:bold;opacity:0.8;"></p>
+        </div>
+        <div class="advance">
+
         </div>
 
     <!-- Modal -->
@@ -60,8 +92,8 @@
           <div class="modal-body">
             <p>身為海盜的你，最重要的目標就是找到金銀島的寶藏！</p>
             <img id="pirate" src=img/1.png >
-            <p>你需要找到通往金銀島的最佳路線，但是你並沒有屬於自己的船隻</p>
-            <p>你必須在每個路過的島嶼(皆有<span style="color:red;">兩艘駛離的船隻</span>，A和B)，選擇其中一艘船，搭乘到下一個島嶼</p>
+            <p>你需要找到通往金銀島的最佳路線，但是你並不知道接下來到的島嶼是哪座</p>
+            <p>你必須在每個路過的島嶼(皆有<span style="color:red;">兩個不同的航線</span>，A和B)，選擇其中一個航線，搭乘到下一個島嶼</p>
             <img id="box" src="img/3.png">
             <p>就由這種轉乘的方式，前往目的地 --- 金銀島!!!</p>
             <p>前往尋寶的路程中，我們希望是以<span style="color:red;">最快的方式(最短路徑)</span>到達，以免金銀島的寶藏被他人搶先了!</p>
