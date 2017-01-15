@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
         <script src='https://cdn.rawgit.com/weepy/jquery.path/master/jquery.path.js'></script>
+        <title>金銀島-有限狀態機</title>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-static-top">
@@ -18,6 +19,7 @@
               <a class="navbar-brand" style="font-family:Microsoft JhengHei;font-size:34px;font-weight:bold;">金銀島-有限狀態機</a>
             </div>
             <ul class="nav navbar-nav navbar-right" style="margin-right:1.5vw;margin-top:5px;">
+              <li><button type="button" class="btn btn-link navbar-btn" onclick="music_stop()" ><span class="glyphicon glyphicon-volume-off" id="music_btn" aria-hidden="true" style="font-size:22px;font-weight:bold;"></span></button></li>
               <li><button type="button" class="btn btn-link navbar-btn" onclick="restart()" id="restart" style="font-size:17px;font-weight:bold;">重新開始</button></li>
               <li><button type="button" id="description" class="btn btn-link navbar-btn" data-toggle="modal" data-target="#myModal" style="font-size:17px;font-weight:bold;">
       遊戲說明
@@ -34,6 +36,8 @@
             </ul>
           </div>
         </nav>
+
+        <audio controls  id="music" src="res/background_music.mp3" type="audio/mpeg" hidden="true" loop="loop"></audio>
 
 
         <div class="map" id="map">

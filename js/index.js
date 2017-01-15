@@ -237,6 +237,7 @@ $(document).ready(function(){
 	console.log("start");
     intro()
 	document.getElementById("description").click(); //modal description
+    document.getElementById("music").play();
     //advance()
 });
 
@@ -332,6 +333,19 @@ function boat_invert(id,a){
         document.getElementById(id).src="img/ship.png";
     }
 
+}
+
+var music_now=0;
+function music_stop(){
+    if(music_now==0){
+        document.getElementById("music").pause();
+        $("#music_btn").attr('class','glyphicon glyphicon-volume-up');
+        music_now=1
+    }else{
+        document.getElementById("music").play();
+        $("#music_btn").attr('class','glyphicon glyphicon-volume-off');
+        music_now=0
+    }
 }
 
 function advance(){
