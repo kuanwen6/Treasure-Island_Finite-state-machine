@@ -14,6 +14,7 @@ function restart(){
     document.getElementById("description").click(); //modal description
 
     initial_tag=0
+    move_count=0
     intro()
     $("#arr1-2").css("visibility","hidden");
     $("#arr1-3").css("visibility","hidden");
@@ -25,11 +26,19 @@ function restart(){
     $("#arr4-1").css("visibility","hidden");
     $("#arr5-3").css("visibility","hidden");
     $("#arr5-2").css("visibility","hidden");
+
+    $(".map").css("display","inherit")
+    boat_invert("boat",0)
+    if($(".FSM_p").length){
+        boat_invert("adv_ship",0)
+        adv_dis()
+    }
 }
 
+var move_count=0;
 function move(a,b){			//move from island a to island b
 	console.log("move from "+a+" to "+b);
-
+    move_count++
     if(initial_tag==1){
         initial_tag++
         console.log("sencond step intro")
@@ -158,6 +167,11 @@ function move(a,b){			//move from island a to island b
         path_click(document.getElementById("is"+b+"A"),"is"+b+"A","A")  //unlock the destinction onclick event
         path_click(document.getElementById("is"+b+"B"),"is"+b+"B","B")
         $("#arr"+a+"-"+b).css("visibility","visible");
+
+        if(b==5){
+            $("#myRecord").html(move_count+'<span style="font-size:30px; color:black;">次</span');
+            $('#endModal').modal('show');
+        }
     }, delay);
 
 
@@ -223,6 +237,7 @@ $(document).ready(function(){
 	console.log("start");
     intro()
 	document.getElementById("description").click(); //modal description
+    //advance()
 });
 
 var initial_tag=0
@@ -271,34 +286,34 @@ function path_click(img,id,a){
     img.onclick = function(){
         if(id=="is1A"){
             move(1,2)
-            boat_invert(0)
+            boat_invert("boat",0)
         }else if(id=="is2A"){
             move(2,3)
-            boat_invert(0)
+            boat_invert("boat",0)
         }else if(id=="is3A"){
             move(3,4)
-            boat_invert(0)
+            boat_invert("boat",0)
         }else if(id=="is4A"){
             move(4,5)
-            boat_invert(1)
+            boat_invert("boat",1)
         }else if(id=="is5A"){
             move(5,3)
-            boat_invert(1)
+            boat_invert("boat",1)
         }else if(id=="is1B"){
             move(1,3)
-            boat_invert(0)
+            boat_invert("boat",0)
         }else if(id=="is2B"){
             move(2,1)
-            boat_invert(1)
+            boat_invert("boat",1)
         }else if(id=="is3B"){
             move(3,2)
-            boat_invert(0)
+            boat_invert("boat",0)
         }else if(id=="is4B"){
             move(4,1)
-            boat_invert(1)
+            boat_invert("boat",1)
         }else{
             move(5,2)
-            boat_invert(1)
+            boat_invert("boat",1)
         }
     };
     img.onmouseover=function(){
@@ -309,21 +324,204 @@ function path_click(img,id,a){
     }
 }
 
-function boat_invert(a){
+function boat_invert(id,a){
     if(a==1)
     {
-        document.getElementById("boat").src="img/ship_invert.png";
+        document.getElementById(id).src="img/ship_invert.png";
     }else{
-        document.getElementById("boat").src="img/ship.png";
+        document.getElementById(id).src="img/ship.png";
     }
 
 }
 
 function advance(){
+    //$('#endModal').modal('toggle');
+    move_count=0
     $(".map").css("display","none");
-    $(".advance").append('<img src="img/FSM.png"')
+    if($(".FSM_p").length)
+    {
+         $(".advance").css("display","inherit");
+         console.log("exit")
+     }else{
+
+        $(".advance").css("display","inherit");
+        $(".advance").append('<p style="position:absolute;font-size:30px;font-family:Microsoft JhengHei;font-weight:bold;left:-70px;top:112px;">起點</p>\
+                                <p style="position:absolute;font-size:30px;font-family:Microsoft JhengHei;font-weight:bold;left:500px;top:330px;">終點</p>\
+                                <img src="img/ship.png" id="adv_ship" style="position:absolute;height:85px;width:85px;top:30px;left:70px;">\
+                                <img src="img/path.png" id="1-2" class="FSM_p" style="top:65px;left:150px;" onclick="adv_move(1,2)">\
+                                <img src="img/path.png" id="2-1" class="FSM_p" style="top:155px;left:150px;display:none;" onclick="adv_move(2,1)">\
+                                <img src="img/path.png" id="2-2" class="FSM_p" style="top:20px;left:290px; height:60px;width:80px;display:none;" onclick="adv_move(2,2)">\
+                                <img src="img/path.png" id="3-4" class="FSM_p" style="top:270px;left:255px;display:none;" onclick="adv_move(3,4)">\
+                                <img src="img/path.png" id="4-3" class="FSM_p" style="top:335px;left:255px;display:none;" onclick="adv_move(4,3)">\
+                                <img src="img/path.png" id="3-1" class="FSM_p" style="top:225px;left:50px;display:none;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(3,1)">\
+                                <img src="img/path.png" id="2-4" class="FSM_p" style="width:145px;top:185px;left:355px;display:none;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(2,4)">\
+                                <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:450px;">※進階題：</p>\
+                                <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:480px;">這是一個有限狀態機的常規表示法</p>\
+                                <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:510px;">起點開始，點擊可行路線(a、b、c)</p>\
+                                <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:540px;">然後試著規劃路線到達終點吧!!</p>')
+        }
 }
 
+
+function adv_dis(){
+    $(".FSM_p").css("display","none")
+    $("#1-2").css("display","inherit")
+    $("#adv_ship").css("top","30px")
+    $("#adv_ship").css("left","70px")
+    $(".advance").css("display","none")
+}
+
+function adv_move(a,b){
+    console.log("move from "+a+" to "+b)
+    move_count++
+    switch(a.toString()+b.toString()) {
+        case "12":
+            boat_invert("adv_ship",0)
+            startX = 70
+            startY = 30
+            endX = 280
+            endY = 30
+            angle_start = 0
+            angle_end = 0
+            length = 0.5
+            break;
+        case "31":
+            boat_invert("adv_ship",1)
+            startX = 165
+            startY = 225
+            endX = 70
+            endY = 30
+            angle_start = -50
+            angle_end = 50
+            length = 1
+            break;
+        case "21":
+            startX = 280
+            startY = 30
+            endX = 70
+            endY = 30
+            angle_start = -50
+            angle_end = 50
+            length = 1.1
+            boat_invert("adv_ship",1)
+            break;
+        case "22":
+            startX = 280
+            startY = 30
+            endX = 280
+            endY = 30
+            angle_start = 100
+            angle_end = -100
+            length = 2
+            boat_invert("adv_ship",0)
+            break;
+        case "24":
+            startX = 280
+            startY = 30
+            endX = 390
+            endY = 215
+            angle_start = -30
+            angle_end = 50
+            length = 0.8
+            boat_invert("adv_ship",0)
+            break;
+        case "43":
+            startX = 390
+            startY = 215
+            endX = 165
+            endY = 225
+            angle_start = -50
+            angle_end = 50
+            length = 1
+            boat_invert("adv_ship",1)
+            break;
+        case "34":
+            startX = 165
+            startY = 225
+            endX = 390
+            endY = 225
+            angle_start = -50
+            angle_end = 50
+            length = 0.2
+            boat_invert("adv_ship",0)
+            break;
+        default:
+            console.log("error path")
+    }
+
+    switch(a){
+        case 1:
+            document.getElementById("1-2").style.display="none"
+            break;
+        case 2:
+            document.getElementById("2-2").style.display="none"
+            document.getElementById("2-1").style.display="none"
+            document.getElementById("2-4").style.display="none"
+            break;
+        case 3:
+            document.getElementById("3-4").style.display="none"
+            document.getElementById("3-1").style.display="none"
+            break;
+        case 4:
+            document.getElementById("4-3").style.display="none"
+            break;
+    }
+
+    setTimeout(function() {
+        switch(b){
+            case 1:
+                document.getElementById("1-2").style.display="inherit"
+                break;
+            case 2:
+                document.getElementById("2-2").style.display="inherit"
+                document.getElementById("2-1").style.display="inherit"
+                document.getElementById("2-4").style.display="inherit"
+                break;
+            case 3:
+                document.getElementById("3-4").style.display="inherit"
+                document.getElementById("3-1").style.display="inherit"
+                break;
+            case 4:
+                document.getElementById("4-3").style.display="inherit"
+                break;
+        }
+
+        if(b==4){
+            $("#myRecord2").html(move_count+'<span style="font-size:30px; color:black;">次</span');
+            $('#sec_endModal').modal('show');
+        }
+
+    }, 1800);
+
+    var arc_params = {
+        center: [280,-12.5],
+        radius: 42.5,
+        start: 0,
+        end: 9,
+        dir: -1
+    }
+
+     var bezier_params = {
+        start: {
+          x: startX,
+          y: startY,
+          angle: angle_start
+        },
+        end: {
+          x:endX,
+          y:endY,
+          angle: angle_end,
+          length: length
+        }
+      }
+
+      if(a==b){
+          $("#adv_ship").animate({path : new $.path.arc(arc_params)},1800)
+      }else{
+          $("#adv_ship").animate({path : new $.path.bezier(bezier_params)},1800)
+      }
+
+}
 
 var island_name =["新手島","神燈島","中華島","龍之島","金銀島"]
 

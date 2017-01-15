@@ -3,8 +3,8 @@
 }
 .map{
     position: absolute;
-    margin-top: 40px;
-    left: 0;
+    margin-top: 35px;
+    left: 10vw;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -36,12 +36,14 @@
     position: absolute;
     left: 60px;
     top:200px;
+    opacity: 0.85;
 }
 .map #island2{
     /*position: relative;*/
     position: absolute;
     left: 430px;
     top:350px;
+    opacity: 0.85;
 }
 
 .map #island3{
@@ -49,6 +51,7 @@
     position: absolute;
     left: 315px;
     top:30px;
+    opacity: 0.85;
 }
 
 .map #island4{
@@ -56,6 +59,7 @@
     position: absolute;
     left: 835px;
     top:280px;
+    opacity: 0.85;
 }
 
 .map #island5{
@@ -63,6 +67,7 @@
     position: absolute;
     left: 730px;
     top:15px;
+    opacity: 0.85;
 }
 
 .map .text {
@@ -116,4 +121,24 @@
     position:absolute;
     opacity: 0.9;
     visibility:hidden;
+}
+
+.advance{
+    position: absolute;
+    margin-top: 40px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 10em;
+    width:489px;
+    height:402px;
+    display: none;
+
+    background-image: url("img/FSM_1.png");
+}
+
+.FSM_p{
+    position: absolute;
+    opacity: 0;
 }

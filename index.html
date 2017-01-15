@@ -15,15 +15,15 @@
         <nav class="navbar navbar-default navbar-static-top">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" style="font-family:Microsoft JhengHei;font-size:30px;">金銀島-有限狀態機</a>
+              <a class="navbar-brand" style="font-family:Microsoft JhengHei;font-size:34px;font-weight:bold;">金銀島-有限狀態機</a>
             </div>
             <ul class="nav navbar-nav navbar-right" style="margin-right:1.5vw;margin-top:5px;">
-              <li><button type="button" class="btn btn-link navbar-btn" onclick="restart()" id="restart">重新開始</button></li>
-              <li><button type="button" id="description" class="btn btn-link navbar-btn" data-toggle="modal" data-target="#myModal">
+              <li><button type="button" class="btn btn-link navbar-btn" onclick="restart()" id="restart" style="font-size:17px;font-weight:bold;">重新開始</button></li>
+              <li><button type="button" id="description" class="btn btn-link navbar-btn" data-toggle="modal" data-target="#myModal" style="font-size:17px;font-weight:bold;">
       遊戲說明
     </button></li>
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">相關連結
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"  style="font-size:17px;font-weight:bold;">相關連結
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a target="_blank" href="https://zh.wikipedia.org/wiki/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA">維基百科</a></li>
@@ -62,7 +62,6 @@
             <img src="img/island.png" style="position:absolute;top:260px;left:660px;height:80px;width:80px;">
             <img src="img/whale.png" style="position:absolute;top:480px;left:880px;height:100px;width:100px;">
             <img src="img/treasure-1.png" style="position:absolute;top:120px;left:850px;height:55px;width:55px;">
-            <img src="img/boat.png" style="position:absolute;top:-30px;left:50px;height:180px;width:180px;-ms-transform: rotate(10deg);-webkit-transform: rotate(10deg);transform: rotate(10deg);">
             <img src="img/r-arrow.png" id="arr1-2" class="arr" style="top:360px;left:300px;height:130px;width:130px;-ms-transform: rotate(125deg);-webkit-transform: rotate(125deg);transform: rotate(125deg);">
             <img src="img/y-arrow.png" id="arr2-1" class="arr" style="top:390px;left:260px;height:150px;width:130px;-ms-transform: rotate(305deg);-webkit-transform: rotate(305deg);transform: rotate(305deg);">
             <img src="img/y-arrow.png" id="arr1-3" class="arr" style="top:210px;left:280px;height:130px;width:130px;-ms-transform: rotate(43deg);-webkit-transform: rotate(43deg);transform: rotate(43deg);">
@@ -104,6 +103,62 @@
       </div>
     </div>
 
+    <div class="modal fade" id="endModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="img/success.png" height="215px" width="580px">
+
+                </div>
+                <div class="modal-body">
+                    <p>你的移動數是: <h1 id=myRecord style="font-family:Microsoft JhengHei;font-size:80px;text-align:center;color:red;"></h1></p> <br>
+
+
+                    <p>其實這個海盜任務代表的是 <span style="color:red;font-weight:bold;">「有限狀態機」(finite-state machine)</span><br>
+                       有限狀態機是甚麼呢?<br>
+                       簡單的來說，有限狀態機是表示有限個狀態，以及在這些狀態之間的轉移和動作。<br>
+                       有限狀態機的下一個狀態和輸出，是由 <span style="color:red;font-weight:bold;">輸入</span>和 <span style="color:red;font-weight:bold;">當前狀態</span>決定的<br>
+                       所以那些島象徵著不同的狀態，兩艘船代表不同的輸入，可以分別前往其他的島(狀態)。<br>
+                       只有目前所在的島和選擇的船，會影響要前往哪個島，<span style="color:red;font-weight:bold;">跟前面其他的選擇無關。</span>
+                       </p>
+
+                    <p>所以說，這個任務最少只要<span style="color:red;font-weight:bold;">三次</span>就能到囉，可以選擇再次挑戰喔，也可以選擇進階任務!!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="restart()">再挑戰一次</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="advance()">進階任務</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="sec_endModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="img/success.png" height="215px" width="580px">
+
+                </div>
+                <div class="modal-body">
+                    <p>你的移動數是: <h1 id=myRecord2 style="font-family:Microsoft JhengHei;font-size:80px;text-align:center;color:red;"></h1></p> <br>
+
+
+                    <p>這樣子對有限狀態機有沒有比較瞭解了呢?<br>
+                        要是沒有也沒關係，在下面會附上一些相關的說明連結<br>
+                        可以好好的再看看，說不定會有更多收穫喔!!<br>
+                        也可以再來挑戰個幾次或者繼續玩下去，就會對這個更加熟悉囉!</p>
+                      <a target="_blank" href="https://zh.wikipedia.org/wiki/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA">維基百科</a><br>
+                  <a target="_blank" href="http://nthucad.cs.nthu.edu.tw/~yyliu/personal/nou/04ds/fsm.html">FSM範例</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="restart()">重頭挑戰</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="advance()">進階挑戰</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript" src="js/index.js"></script>
     </body>
