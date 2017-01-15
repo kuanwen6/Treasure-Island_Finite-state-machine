@@ -269,8 +269,8 @@ function intro_no(island){
             $("#t2").html("好燙好燙~~~~");
             break;
         case 3:
-            $("#t1").html("&nbsp&nbsp&nbsp&nbsp台灣中國!");
-            $("#t2").html("&nbsp&nbsp&nbsp&nbsp一邊一國!");
+            $("#t1").html("小籠包、臭豆腐、米糕");
+            $("#t2").html("肉粽、蚵仔煎、牛肉湯");
             break;
         case 4:
             $("#t1").html("......龍.....龍.....??");
