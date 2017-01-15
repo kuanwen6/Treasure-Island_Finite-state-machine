@@ -354,7 +354,13 @@ function advance(){
     $(".map").css("display","none");
     if($(".FSM_p").length)
     {
+        $(".FSM_p").css("display","none")
+        $("#1-2").css("display","inherit")
+        $("#adv_ship").css("top","30px")
+        $("#adv_ship").css("left","70px")
          $(".advance").css("display","inherit");
+         boat_invert("adv_ship",0)
+
          console.log("exit")
      }else{
 
@@ -362,13 +368,13 @@ function advance(){
         $(".advance").append('<p style="position:absolute;font-size:30px;font-family:Microsoft JhengHei;font-weight:bold;left:-70px;top:112px;">起點</p>\
                                 <p style="position:absolute;font-size:30px;font-family:Microsoft JhengHei;font-weight:bold;left:500px;top:330px;">終點</p>\
                                 <img src="img/ship.png" id="adv_ship" style="position:absolute;height:85px;width:85px;top:30px;left:70px;">\
-                                <img src="img/path.png" id="1-2" class="FSM_p" style="top:65px;left:150px;" onclick="adv_move(1,2)">\
-                                <img src="img/path.png" id="2-1" class="FSM_p" style="top:155px;left:150px;display:none;" onclick="adv_move(2,1)">\
-                                <img src="img/path.png" id="2-2" class="FSM_p" style="top:20px;left:290px; height:60px;width:80px;display:none;" onclick="adv_move(2,2)">\
-                                <img src="img/path.png" id="3-4" class="FSM_p" style="top:270px;left:255px;display:none;" onclick="adv_move(3,4)">\
-                                <img src="img/path.png" id="4-3" class="FSM_p" style="top:335px;left:255px;display:none;" onclick="adv_move(4,3)">\
-                                <img src="img/path.png" id="3-1" class="FSM_p" style="top:225px;left:50px;display:none;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(3,1)">\
-                                <img src="img/path.png" id="2-4" class="FSM_p" style="width:145px;top:185px;left:355px;display:none;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(2,4)">\
+                                <img src="img/path.png" id="1-2" class="FSM_p" style="top:45px;left:150px; width:130px;height:70px;" onclick="adv_move(1,2)">\
+                                <img src="img/path.png" id="2-1" class="FSM_p" style="top:155px;left:150px;display:none;width:130px;height:70px;" onclick="adv_move(2,1)">\
+                                <img src="img/path.png" id="2-2" class="FSM_p" style="top:5px;left:290px; height:70px;width:80px;display:none;" onclick="adv_move(2,2)">\
+                                <img src="img/path.png" id="3-4" class="FSM_p" style="top:240px;left:255px;display:none;height:70px;width:130px;" onclick="adv_move(3,4)">\
+                                <img src="img/path.png" id="4-3" class="FSM_p" style="top:335px;left:255px;display:none;height:70px;width:130px;" onclick="adv_move(4,3)">\
+                                <img src="img/path.png" id="3-1" class="FSM_p" style="top:210px;left:40px;display:none;height:70px;width:130px;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(3,1)">\
+                                <img src="img/path.png" id="2-4" class="FSM_p" style="width:145px;height:80px;top:160px;left:355px;display:none;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(2,4)">\
                                 <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:450px;">※進階題：</p>\
                                 <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:480px;">這是一個有限狀態機的常規表示法</p>\
                                 <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:510px;">起點開始，點擊可行路線(a、b、c)</p>\
