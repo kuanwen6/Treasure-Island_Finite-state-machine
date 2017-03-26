@@ -1,8 +1,8 @@
 function restart(){
     console.log("restart");
     $("#arrow1-2a").css("visibility","hidden");
-    document.getElementById("is1A").style.display="inherit"
-    document.getElementById("is1B").style.display="inherit"
+    document.getElementById("is1A").style.display="inherit";
+    document.getElementById("is1B").style.display="inherit";
     path_click(document.getElementById("is1A"),"is1A","A")  //flag restart
     path_click(document.getElementById("is1B"),"is1B","B")
     document.getElementById("boat").style.left=180   //boat restart
@@ -248,11 +248,7 @@ function flag_unhover(){
 $(document).ready(function(){
 	console.log("start");
     intro()
-<<<<<<< HEAD
-	//document.getElementById("description").click(); //modal description
-=======
-	document.getElementById("description").click(); //modal description
->>>>>>> origin/gh-pages
+	  document.getElementById("description").click(); //modal description
     document.getElementById("music").play();
     //advance()
 });
