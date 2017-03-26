@@ -8,8 +8,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/d3.v3.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
         <script src='https://cdn.rawgit.com/weepy/jquery.path/master/jquery.path.js'></script>
+        <title>金銀島-有限狀態機</title>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-static-top">
@@ -18,6 +19,7 @@
               <a class="navbar-brand" style="font-family:Microsoft JhengHei;font-size:34px;font-weight:bold;">金銀島-有限狀態機</a>
             </div>
             <ul class="nav navbar-nav navbar-right" style="margin-right:1.5vw;margin-top:5px;">
+              <li><button type="button" class="btn btn-link navbar-btn" onclick="music_stop()" ><span class="glyphicon glyphicon-volume-off" id="music_btn" aria-hidden="true" style="font-size:22px;font-weight:bold;"></span></button></li>
               <li><button type="button" class="btn btn-link navbar-btn" onclick="restart()" id="restart" style="font-size:17px;font-weight:bold;">重新開始</button></li>
               <li><button type="button" id="description" class="btn btn-link navbar-btn" data-toggle="modal" data-target="#myModal" style="font-size:17px;font-weight:bold;">
       遊戲說明
@@ -35,6 +37,8 @@
           </div>
         </nav>
 
+        <audio controls  id="music" src="res/background_music.mp3" type="audio/mpeg" hidden="true" loop="loop"></audio>
+
 
         <div class="map" id="map">
             <img src="img/island1.png" id="island1" style="width:225px;height:185px;" onmouseover="hover(1)" onmouseout="unhover(1)">
@@ -45,19 +49,19 @@
 
             <img src="img/ship.png" id="boat">
 
-            <img src="img/pirate.png" id="pirate_head" style="position:absolute;width:120px;height:120px;left:-200px;top:100px">
-            <img src="img/curve.png" id="curve" style="position:absolute;width:50px;height:30px;left:-90px;top:210px;transform: rotate(40deg);opacity:0.8;">
+            <img src="img/pirate.png" id="pirate_head" style="position:absolute;width:120px;height:120px;left:-250px;top:50px">
+            <img src="img/curve.png" id="curve" style="position:absolute;width:50px;height:30px;left:-140px;top:160px;transform: rotate(40deg);opacity:0.8;">
             <img src="img/red-arrow.png" id="red-a" style="position:absolute;width:50px;height:60px;left:60px;top:200px;">
             <img src="img/yellow-arrow.png" id="yellow-a" style="position:absolute;width:50px;height:60px;left:240px;top:203px;">
             <p class="intro_text" style="top:155px;left:75px;font-size:30px;color:red;opacity:0.8;">A</p>
             <p class="intro_text" style="top:158px;left:255px;font-size:30px;color:yellow;opacity:0.9;">B</p>
-            <p class="intro_text" style="top:230px;left:-220px;">呀!小夥子!</p>
-            <p class="intro_text" style="top:255px;left:-220px;">島上不同的旗幟</p>
-            <p class="intro_text" style="top:280px;left:-220px;">代表著不同的航線</p>
-            <p class="intro_text" style="top:305px;left:-220px;">左是A(紅) 右是B(黃)</p>
-            <p class="intro_text" style="top:330px;left:-220px;">快帶我們去金銀島吧!</p>
-            <p class="intro_text_s" id="t1" style="top:230px;left:-220px;">哈哈!就是這樣</p>
-            <p class="intro_text_s" id="t2" style="top:255px;left:-220px;">加油吧!別迷路了!</p>
+            <p class="intro_text" style="top:190px;left:-270px;">呀!小夥子!</p>
+            <p class="intro_text" style="top:215px;left:-270px;">島上不同的旗幟</p>
+            <p class="intro_text" style="top:240px;left:-270px;">代表著不同的航線</p>
+            <p class="intro_text" style="top:265px;left:-270px;">左是A(紅) 右是B(黃)</p>
+            <p class="intro_text" style="top:290px;left:-270px;">快帶我們去金銀島吧!</p>
+            <p class="intro_text_s" id="t1" style="top:190px;left:-270px;">哈哈!就是這樣</p>
+            <p class="intro_text_s" id="t2" style="top:215px;left:-270px;">加油吧!別迷路了!</p>
             <img src="img/tortoise.png" style="position:absolute;top:490px;left:130px;height:60px;width:60px;-ms-transform: rotate(58deg);-webkit-transform: rotate(58deg);transform: rotate(58deg);">
             <img src="img/island.png" style="position:absolute;top:260px;left:660px;height:80px;width:80px;">
             <img src="img/whale.png" style="position:absolute;top:480px;left:880px;height:100px;width:100px;">
@@ -72,6 +76,20 @@
             <img src="img/y-arrow.png" id="arr5-2" class="arr" style="top:180px;left:695px;height:330px;width:130px;-ms-transform: rotate(215deg);-webkit-transform: rotate(215deg);transform: rotate(215deg);">
             <img src="img/r-arrow.png" id="arr3-4" class="arr" style="top:160px;left:620px;height:330px;width:130px;-ms-transform: rotate(125deg);-webkit-transform: rotate(125deg);transform: rotate(125deg);">
             <img src="img/y-arrow2.png" id="arr4-1" class="arr" style="top:450px;left:220px;">
+
+            <img src="img/mini-map.png" id="mini" style="position:absolute;top:420px;left:-320px;width:298px;height:175px;">
+
+
+            <img src="img/b-arrow.png" id="marr1-2" class="arr" style="position:absolute;top:480px;left:-248px;height:83px;width:60px;-ms-transform: rotate(125deg);-webkit-transform: rotate(125deg);transform: rotate(125deg);">
+            <img src="img/b-arrow.png" id="marr2-1" class="arr" style="position:absolute;top:500px;left:-260px;height:83px;width:60px;-ms-transform: rotate(305deg);-webkit-transform: rotate(305deg);transform: rotate(305deg);">
+            <img src="img/b-arrow.png" id="marr1-3" class="arr" style="position:absolute;top:445px;left:-263px;height:55px;width:60px;-ms-transform: rotate(50deg);-webkit-transform: rotate(50deg);transform: rotate(50deg);">
+            <img src="img/b-arrow.png" id="marr3-2" class="arr" style="position:absolute;top:465px;left:-223px;height:77px;width:60px;-ms-transform: rotate(166deg);-webkit-transform: rotate(166deg);transform: rotate(166deg);">
+            <img src="img/b-arrow.png" id="marr2-3" class="arr" style="position:absolute;top:465px;left:-210px;height:77px;width:60px;-ms-transform: rotate(346deg);-webkit-transform: rotate(346deg);transform: rotate(346deg);">
+            <img src="img/b-arrow.png" id="marr5-3" class="arr" style="position:absolute;top:410px;left:-173px;height:80px;width:60px;-ms-transform: rotate(268deg);-webkit-transform: rotate(268deg);transform: rotate(268deg);">
+            <img src="img/b-arrow.png" id="marr4-5" class="arr" style="position:absolute;top:463px;left:-112px;height:70px;width:60px;-ms-transform: rotate(347deg);-webkit-transform: rotate(347deg);transform: rotate(347deg);">
+            <img src="img/b-arrow.png" id="marr5-2" class="arr" style="position:absolute;top:440px;left:-165px;height:125px;width:60px;-ms-transform: rotate(218deg);-webkit-transform: rotate(218deg);transform: rotate(218deg);">
+            <img src="img/b-arrow.png" id="marr3-4" class="arr" style="position:absolute;top:423px;left:-160px;height:140px;width:60px;-ms-transform: rotate(129deg);-webkit-transform: rotate(129deg);transform: rotate(129deg);">
+            <img src="img/under-path.png" id="marr4-1" class="arr" style="position:absolute;top:513px;left:-300px;width:250px;height:95px;-ms-transform: rotate(4deg);-webkit-transform: rotate(4deg);transform: rotate(4deg);">
 
             <p class="text" style="font-size:30px;font-family:Microsoft JhengHei;letter-spacing:8px;font-weight:bold;"></p>
             <p class="flag_text" style="font-size:30px;font-family:Microsoft JhengHei;letter-spacing:8px;font-weight:bold;opacity:0.8;"></p>
@@ -88,15 +106,16 @@
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h2 class="modal-title" id="myModalLabel">金銀島 - 遊戲說明</h2>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" style="font-size:16px;">
             <p>身為海盜的你，最重要的目標就是找到金銀島的寶藏！</p>
             <img id="pirate" src=img/1.png >
             <p>你需要找到通往金銀島的最佳路線，但是你並不知道接下來到的島嶼是哪座</p>
-            <p>你必須在每個路過的島嶼(皆有<span style="color:red;">兩個不同的航線</span>，A和B)，選擇其中一個航線，搭乘到下一個島嶼</p>
+            <p>你必須在每個路過的島嶼(皆有<span style="color:red;">兩個不同的航線</span>，<span style="color:red;font-weight:bold;">A</span>和<span style="color:yellow;font-weight:bold;">B</span>)，選擇其中一個航線，搭乘到下一個島嶼</p>
             <img id="box" src="img/3.png">
             <p>就由這種轉乘的方式，前往目的地 --- 金銀島!!!</p>
             <p>前往尋寶的路程中，我們希望是以<span style="color:red;">最快的方式(最短路徑)</span>到達，以免金銀島的寶藏被他人搶先了!</p>
             <p>記住!千萬不要在路途中迷失方向了！</p>
+            <p>喔！對了！<span style="color:red;">左下角有縮小版的地圖，會記錄下你走過的路徑！</span>好好加油吧！</p>
           </div>
           <div class="modal-footer"><button type="button" class="btn btn-warning btn" data-dismiss="modal">開始旅程!</button></div>
         </div>

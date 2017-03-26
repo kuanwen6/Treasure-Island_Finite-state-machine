@@ -27,6 +27,17 @@ function restart(){
     $("#arr5-3").css("visibility","hidden");
     $("#arr5-2").css("visibility","hidden");
 
+    $("#marr1-2").css("visibility","hidden");
+    $("#marr1-3").css("visibility","hidden");
+    $("#marr2-1").css("visibility","hidden");
+    $("#marr2-3").css("visibility","hidden");
+    $("#marr3-2").css("visibility","hidden");
+    $("#marr3-4").css("visibility","hidden");
+    $("#marr4-5").css("visibility","hidden");
+    $("#marr4-1").css("visibility","hidden");
+    $("#marr5-3").css("visibility","hidden");
+    $("#marr5-2").css("visibility","hidden");
+
     $(".map").css("display","inherit")
     boat_invert("boat",0)
     if($(".FSM_p").length){
@@ -167,6 +178,7 @@ function move(a,b){			//move from island a to island b
         path_click(document.getElementById("is"+b+"A"),"is"+b+"A","A")  //unlock the destinction onclick event
         path_click(document.getElementById("is"+b+"B"),"is"+b+"B","B")
         $("#arr"+a+"-"+b).css("visibility","visible");
+        $("#marr"+a+"-"+b).css("visibility","visible");
 
         if(b==5){
             $("#myRecord").html(move_count+'<span style="font-size:30px; color:black;">次</span');
@@ -236,7 +248,8 @@ function flag_unhover(){
 $(document).ready(function(){
 	console.log("start");
     intro()
-	document.getElementById("description").click(); //modal description
+	//document.getElementById("description").click(); //modal description
+    document.getElementById("music").play();
     //advance()
 });
 
@@ -268,8 +281,8 @@ function intro_no(island){
             $("#t2").html("好燙好燙~~~~");
             break;
         case 3:
-            $("#t1").html("&nbsp&nbsp&nbsp&nbsp台灣中國!");
-            $("#t2").html("&nbsp&nbsp&nbsp&nbsp一邊一國!");
+            $("#t1").html("小籠包、臭豆腐、米糕");
+            $("#t2").html("肉粽、蚵仔煎、牛肉湯");
             break;
         case 4:
             $("#t1").html("......龍.....龍.....??");
@@ -334,13 +347,32 @@ function boat_invert(id,a){
 
 }
 
+var music_now=0;
+function music_stop(){
+    if(music_now==0){
+        document.getElementById("music").pause();
+        $("#music_btn").attr('class','glyphicon glyphicon-volume-up');
+        music_now=1
+    }else{
+        document.getElementById("music").play();
+        $("#music_btn").attr('class','glyphicon glyphicon-volume-off');
+        music_now=0
+    }
+}
+
 function advance(){
     //$('#endModal').modal('toggle');
     move_count=0
     $(".map").css("display","none");
     if($(".FSM_p").length)
     {
+        $(".FSM_p").css("display","none")
+        $("#1-2").css("display","inherit")
+        $("#adv_ship").css("top","30px")
+        $("#adv_ship").css("left","70px")
          $(".advance").css("display","inherit");
+         boat_invert("adv_ship",0)
+
          console.log("exit")
      }else{
 
@@ -348,13 +380,13 @@ function advance(){
         $(".advance").append('<p style="position:absolute;font-size:30px;font-family:Microsoft JhengHei;font-weight:bold;left:-70px;top:112px;">起點</p>\
                                 <p style="position:absolute;font-size:30px;font-family:Microsoft JhengHei;font-weight:bold;left:500px;top:330px;">終點</p>\
                                 <img src="img/ship.png" id="adv_ship" style="position:absolute;height:85px;width:85px;top:30px;left:70px;">\
-                                <img src="img/path.png" id="1-2" class="FSM_p" style="top:65px;left:150px;" onclick="adv_move(1,2)">\
-                                <img src="img/path.png" id="2-1" class="FSM_p" style="top:155px;left:150px;display:none;" onclick="adv_move(2,1)">\
-                                <img src="img/path.png" id="2-2" class="FSM_p" style="top:20px;left:290px; height:60px;width:80px;display:none;" onclick="adv_move(2,2)">\
-                                <img src="img/path.png" id="3-4" class="FSM_p" style="top:270px;left:255px;display:none;" onclick="adv_move(3,4)">\
-                                <img src="img/path.png" id="4-3" class="FSM_p" style="top:335px;left:255px;display:none;" onclick="adv_move(4,3)">\
-                                <img src="img/path.png" id="3-1" class="FSM_p" style="top:225px;left:50px;display:none;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(3,1)">\
-                                <img src="img/path.png" id="2-4" class="FSM_p" style="width:145px;top:185px;left:355px;display:none;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(2,4)">\
+                                <img src="img/path.png" id="1-2" class="FSM_p" style="top:45px;left:150px; width:130px;height:70px;" onclick="adv_move(1,2)">\
+                                <img src="img/path.png" id="2-1" class="FSM_p" style="top:155px;left:150px;display:none;width:130px;height:70px;" onclick="adv_move(2,1)">\
+                                <img src="img/path.png" id="2-2" class="FSM_p" style="top:5px;left:290px; height:70px;width:80px;display:none;" onclick="adv_move(2,2)">\
+                                <img src="img/path.png" id="3-4" class="FSM_p" style="top:240px;left:255px;display:none;height:70px;width:130px;" onclick="adv_move(3,4)">\
+                                <img src="img/path.png" id="4-3" class="FSM_p" style="top:335px;left:255px;display:none;height:70px;width:130px;" onclick="adv_move(4,3)">\
+                                <img src="img/path.png" id="3-1" class="FSM_p" style="top:210px;left:40px;display:none;height:70px;width:130px;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(3,1)">\
+                                <img src="img/path.png" id="2-4" class="FSM_p" style="width:145px;height:80px;top:160px;left:355px;display:none;-ms-transform: rotate(55deg);-webkit-transform: rotate(55deg);transform: rotate(55deg);" onclick="adv_move(2,4)">\
                                 <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:450px;">※進階題：</p>\
                                 <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:480px;">這是一個有限狀態機的常規表示法</p>\
                                 <p style="position:absolute;font-size:25px;font-family:Microsoft JhengHei;font-weight:bold;left:80px;top:510px;">起點開始，點擊可行路線(a、b、c)</p>\

@@ -3,18 +3,20 @@
 }
 .map{
     position: absolute;
-    margin-top: 35px;
-    left: 10vw;
+    left: 21vw;
     right: 0;
+    /*top:0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;*/
+    margin-top: 35px;
     margin-left: auto;
     margin-right: auto;
     min-height: 10em;
     width: 1100px;
     height: 590px;
-    /*background-color: rgba(3, 215, 244, 0.99);*/
     background-image: url("img/sea5.png");
 }
-
 
 .navbar {min-height: 60px;}
 .navbar-brand {padding: 0 15px; height: 60px; line-height: 60px;}
@@ -141,4 +143,30 @@
 .FSM_p{
     position: absolute;
     opacity: 0;
+}
+
+
+@media screen and (max-width: 1500px) {
+    .map {
+        zoom:0.82;
+        left: 15vw;
+        -moz-transform: scale(0.85);
+    }
+    .advance{
+        zoom:0.87;
+        -moz-transform: scale(0.9);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .map {
+        zoom:0.68;
+        left: 22vw;
+        width: 1060px;
+        -moz-transform: scale(0.75);
+    }
+    .advance{
+        zoom:0.78;
+        -moz-transform: scale(0.85);
+    }
 }
