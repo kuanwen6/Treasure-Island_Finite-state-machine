@@ -248,7 +248,11 @@ function flag_unhover(){
 $(document).ready(function(){
 	console.log("start");
     intro()
+<<<<<<< HEAD
 	//document.getElementById("description").click(); //modal description
+=======
+	document.getElementById("description").click(); //modal description
+>>>>>>> origin/gh-pages
     document.getElementById("music").play();
     //advance()
 });
